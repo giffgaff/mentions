@@ -40,6 +40,9 @@ return [
         ->belongsToMany('mentionsPosts', Post::class, 'post_mentions_post', 'post_id', 'mentions_post_id')
         ->belongsToMany('mentionsUsers', User::class, 'post_mentions_user', 'post_id', 'mentions_user_id'),
 
+    (new Extend\Model(User::class))
+    ->belongsToMany('mentionedBy', Post::class, 'post_mentions_user', 'mentions_post_id', 'post_id'),
+
     new Extend\Locales(__DIR__.'/locale'),
 
     function (Dispatcher $events, Factory $views) {
